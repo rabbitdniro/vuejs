@@ -1,11 +1,14 @@
 <script setup>
   import {ref} from 'vue';
 
+  // Tasks array
   const tasks = ref([]);
 
+  // Input values from user
   const taskGiven = ref("");
   const timeGiven = ref(0);
 
+  // Function to add user input to tasks array
   function addTask() {
     if (taskGiven.value !== '' && timeGiven.value > 0) {
       tasks.value.push({ id: tasks.value.length, name: taskGiven.value, time: timeGiven.value, });
@@ -16,10 +19,12 @@
     }
   }
 
+  // Function to rmove task from array
   function removeTask(num) {
     tasks.value.splice(num, 1);
   }
 
+  // Hide and show popup
   const hide = ref(true);
 
   function hidePopUp() {
@@ -80,7 +85,7 @@
           <div class="row mb-5 align-items-center">
             <div class="input-group">
               <div class="input-group-text"><strong>Time</strong></div>
-              <input v-model.num="timeGiven" type="number" name="duration" id="" placeholder="30" class="form-control" required>
+              <input v-model="timeGiven" type="number" name="duration" id="" min="1" placeholder="30" class="form-control" required>
             </div>
           </div>
 
