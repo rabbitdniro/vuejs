@@ -8,7 +8,7 @@
 
   function addTask() {
     if (taskGiven.value !== '' && timeGiven.value > 0) {
-      tasks.value.push({ id: tasks.value.length, toDo: taskGiven.value, duration: timeGiven.value, });
+      tasks.value.push({ id: tasks.value.length, name: taskGiven.value, time: timeGiven.value, });
       taskGiven.value = "";
       timeGiven.value = 0;
     } else {
@@ -58,8 +58,8 @@
         <!-- Render To-Do-List from Tasks-->
         <ul v-for="(task, index) in tasks" :key="index" class="list-group">
           <li class="list-group-item d-flex justify-content-between align-items-center mb-1">
-            <strong>{{ index + 1 }})</strong> {{ task.toDo }} - {{ task.duration }} min
-            <span @click="removeTask(index)" class="badge bg-primary rounded-pill" style="cursor: pointer;">X</span>
+            <strong>{{ index + 1 }})</strong> {{ task.name }} - {{ task.time }} minutes
+            <span @click="removeTask(index)" class="btn bg-primary rounded-pill" style="cursor: pointer;">X</span>
           </li>
         </ul>
       </div>
@@ -72,7 +72,7 @@
         <form @submit.prevent action="">
           <div class="row mb-3 align-items-center">
             <div class="input-group">
-              <div class="input-group-text"><strong>Task</strong></div>
+              <div class="input-group-text"><strong>Task Name</strong></div>
               <input v-model="taskGiven" type="text" name="taskname" id="" placeholder="Review practice code" class="form-control" required>
             </div>
           </div>
@@ -80,7 +80,7 @@
           <div class="row mb-5 align-items-center">
             <div class="input-group">
               <div class="input-group-text"><strong>Time</strong></div>
-              <input v-model.num="timeGiven" type="text" name="duration" id="" placeholder="30" class="form-control" required>
+              <input v-model.num="timeGiven" type="number" name="duration" id="" placeholder="30" class="form-control" required>
             </div>
           </div>
 
